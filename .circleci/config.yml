@@ -126,11 +126,6 @@ workflows:
           tag: ${CIRCLE_SHA1}
           # Uncomment if the repository does not yet exist
           # create-repo: true
-      - aws-eks/create-cluster:
-          cluster-name: eks_cluster
-          aws-region: $AWS_DEFAULT_REGION
-          requires:
-            - build-and-push-image
       - deploy-application:
           cluster-name: eks_cluster
           aws-region: $AWS_DEFAULT_REGION
