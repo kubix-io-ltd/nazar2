@@ -33,7 +33,7 @@ jobs:
           command: |
             # Replace the placeholders in the manifest with the intended values.
             # This is to avoid hardcoding the image name in the manifest, to make this
-            # demo project more portable.
+            # demo project more portable..
             BUILD_DATE=$(date '+%Y%m%d%H%M%S')
             cat deployment/demo-app-deployment.yaml.template |\
                sed "s|DOCKER_IMAGE_NAME|eks_orb_demo_app|\
