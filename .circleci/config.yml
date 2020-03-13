@@ -44,10 +44,6 @@ jobs:
           install-kubectl: true
           aws-region: eu-central-1
       - kubernetes/create-or-update-resource:
-          resource-file-path: "deployment/demo-app-deployment.yaml"
-          get-rollout-status: true
-          resource-name: deployment/demoapp
-      - kubernetes/create-or-update-resource:
           resource-file-path: "deployment/demo-app-service.yaml"
   test-application:
     executor: aws-eks/python3
