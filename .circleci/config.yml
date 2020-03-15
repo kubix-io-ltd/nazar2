@@ -10,14 +10,14 @@ workflows:
     jobs:
       - aws-ecr/build_and_push_image:
           name: build-and-push-image
-          account-url: AWS_ECR_ACCOUNT_URL
+          account-url: AWS_ECR_URL
           region: AWS_DEFAULT_REGION
           repo: simplelearnapp1
           dockerfile: Dockerfile
-          tag: "10"
+          tag: "11"
           # Uncomment if the repository does not yet exist
           # create-repo: true
       - aws-eks/install-helm-chart:
-          chart: AWS_ECR_ACCOUNT_URL/simplelearnapp1:10
+          chart: AWS_ECR_URL/simplelearnapp1:10
           cluster-name: terraform-eks-demo
           release-name: grafana-release
