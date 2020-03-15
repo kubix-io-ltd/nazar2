@@ -14,11 +14,11 @@ workflows:
           region: AWS_DEFAULT_REGION
           repo: simplelearnapp1
           dockerfile: Dockerfile
-          tag: "13"
+          tag: "14"
           # Uncomment if the repository does not yet exist
           # create-repo: true
       - aws-eks/install-helm-chart:
-          chart: "829804546595.dkr.ecr.eu-central-1.amazonaws.com/simplelearnapp1:13"
+          chart: "https://829804546595.dkr.ecr.eu-central-1.amazonaws.com/simplelearnapp1:14"
           cluster-name: terraform-eks-demo
           release-name: nginx-release
           requires:
