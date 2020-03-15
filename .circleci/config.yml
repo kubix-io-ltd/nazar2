@@ -18,6 +18,8 @@ workflows:
           # Uncomment if the repository does not yet exist
           # create-repo: true
       - aws-eks/install-helm-chart:
-          chart: AWS_ECR_URL/simplelearnapp1:10
+          chart: "829804546595.dkr.ecr.eu-central-1.amazonaws.com/simplelearnapp1:11"
           cluster-name: terraform-eks-demo
-          release-name: grafana-release
+          release-name: nginx-release
+          requires:
+            - build-and-push-image
