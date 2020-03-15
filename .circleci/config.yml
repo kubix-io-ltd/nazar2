@@ -14,7 +14,7 @@ workflows:
           region: AWS_DEFAULT_REGION
           repo: simplelearnapp1
           dockerfile: Dockerfile
-          tag: 10
+          tag: "10"
           # Uncomment if the repository does not yet exist
           # create-repo: true
       - aws-eks/install-helm-chart:
