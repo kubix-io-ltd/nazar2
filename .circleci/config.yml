@@ -34,8 +34,6 @@ workflows:
           repo: simplelearnapp1
           dockerfile: Dockerfile
           tag: "stable"
-          # Uncomment if the repository does not yet exist
-          # create-repo: true
       - install-helm-custom-chart:
           name: install-helm-custom-chart
           requires:
