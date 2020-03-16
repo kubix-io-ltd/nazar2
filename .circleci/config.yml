@@ -14,7 +14,7 @@ jobs:
           cluster-name: terraform-eks-demo
           install-kubectl: true
       - helm/install-helm-on-cluster:
-          enable-cluster-wide-admin-access: true
+          enable-cluster-wide-admin-access: false
       - run:
           name: install custom helm chart
           command: |
