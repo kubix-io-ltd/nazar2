@@ -15,14 +15,11 @@ jobs:
           Name of the EKS cluster
         type: string
     steps:
-      - aws-eks/update-kubeconfig-with-authenticator:
-          cluster-name: terraform-eks-demo
-          install-kubectl: true
-          aws-region: eu-central-1
+      - checkout
       - run:
-        name: install custom helm chart
-        command: |
-          helm install ./mychart --generate-name
+          name: install custom helm chart
+          command: |
+            helm install ./mychart --generate-name
 
 workflows:
   deployment:
