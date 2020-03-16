@@ -18,7 +18,14 @@ jobs:
       - run:
           name: install custom helm chart
           command: |
-            helm upgrade -i mychart ~/data/works/kubix/nazar2/mychart -f ~/data/works/kubix/nazar2/mychart/values.yaml
+            helm create cstmnginx
+            mv cstmnginx/values.yaml cstmnginx/values.yaml.template
+            mv cstmnginx/Chart.yaml cstmnginx/Chart.yaml.template
+            cat cstmnginx/values.yaml.template |\
+               sed "s|repository: nginx|repository: 829804546595.dkr.ecr.eu-central-1.amazonaws.com/simplelearnapp1|g" > cstmnginx/values.yaml
+            cat cstmnginx/Chart.yaml.template |\
+               sed "s|appVersion: 1.16.0|appVersion: 27|g" > cstmnginx/Chart.yaml
+            helm install ./cstmnginx
 
 workflows:
   deployment:
@@ -29,17 +36,17 @@ workflows:
           region: AWS_DEFAULT_REGION
           repo: simplelearnapp1
           dockerfile: Dockerfile
-          tag: "26"
+          tag: "27"
           # Uncomment if the repository does not yet exist
           # create-repo: true
-#      - install-helm-custom-chart:
-#          name: install-helm-custom-chart
-#          requires:
-#            - build-and-push-image
-      - aws-eks/install-helm-chart:
-          chart: ~/mychart
-          cluster-name: terraform-eks-demo
-          aws-region: eu-central-1
-          release-name: nginx-release
+      - install-helm-custom-chart:
+          name: install-helm-custom-chart
           requires:
             - build-and-push-image
+#      - aws-eks/install-helm-chart:
+#          chart: ~/mychart
+#          cluster-name: terraform-eks-demo
+#          aws-region: eu-central-1
+#          release-name: nginx-release
+#          requires:
+#            - build-and-push-image
