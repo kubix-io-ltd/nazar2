@@ -24,7 +24,7 @@ jobs:
             cat cstmnginx/values.yaml.template |\
                sed "s|repository: nginx|repository: 829804546595.dkr.ecr.eu-central-1.amazonaws.com/simplelearnapp1|g" > cstmnginx/values.yaml
             cat cstmnginx/Chart.yaml.template |\
-               sed "s|appVersion: 1.16.0|appVersion: 27|g" > cstmnginx/Chart.yaml
+               sed "s|appVersion:|appVersion: 28|g" > cstmnginx/Chart.yaml
             helm install ./cstmnginx
 
 workflows:
@@ -36,7 +36,7 @@ workflows:
           region: AWS_DEFAULT_REGION
           repo: simplelearnapp1
           dockerfile: Dockerfile
-          tag: "27"
+          tag: "28"
           # Uncomment if the repository does not yet exist
           # create-repo: true
       - install-helm-custom-chart:
