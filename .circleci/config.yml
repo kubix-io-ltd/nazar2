@@ -12,7 +12,7 @@ jobs:
       - run:
         name: install custom helm chart
         command: |
-          helm install ./../mychart --generate-name
+          helm install ./mychart --generate-name
 
 workflows:
   deployment:
