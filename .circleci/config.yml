@@ -10,7 +10,8 @@ jobs:
   install-helm-custom-chart:
     executor: aws-eks/python3
     steps:
-      - checkout
+      - helm/install-helm-on-cluster:
+          enable-cluster-wide-admin-access: true
       - run:
           name: install custom helm chart
           command: |
