@@ -8,8 +8,16 @@ orbs:
 jobs:
   install-helm-custom-chart:
     executor: aws-eks/python3
+	parameters:
+      cluster-name:
+        description: |
+          Name of the EKS cluster
+        type: string
     steps:
-      - checkout
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: terraform-eks-demo
+          install-kubectl: true
+          aws-region: eu-central-1
       - run:
         name: install custom helm chart
         command: |
@@ -27,7 +35,7 @@ workflows:
           tag: "18"
           # Uncomment if the repository does not yet exist
           # create-repo: true
-      - install-helm-custom-chart:
+      - instal_helm_custom_chart:
           name: install-helm-custom-chart
           requires:
             - build-and-push-image
