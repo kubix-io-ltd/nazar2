@@ -18,7 +18,7 @@ jobs:
       - run:
           name: install custom helm chart
           command: |
-            helm install ./../mychart
+            helm install stable/traefik
 
 workflows:
   deployment:
@@ -29,7 +29,7 @@ workflows:
           region: AWS_DEFAULT_REGION
           repo: simplelearnapp1
           dockerfile: Dockerfile
-          tag: "24"
+          tag: "25"
           # Uncomment if the repository does not yet exist
           # create-repo: true
       - install-helm-custom-chart:
