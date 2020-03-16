@@ -18,7 +18,7 @@ jobs:
       - run:
           name: install custom helm chart
           command: |
-            helm install stable/traefik
+            helm upgrade -i mychart ./mychart -f ./mychart/values.yaml
 
 workflows:
   deployment:
