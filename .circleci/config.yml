@@ -5,6 +5,14 @@ orbs:
   aws-ecr: circleci/aws-ecr@3.1.0
   kubernetes: circleci/kubernetes@0.3.0
 
+jobs:
+  install-helm-custom-chart:
+    executor: aws-eks/python3
+  steps:
+    - run:
+      name: install custom helm chart
+      command: helm install ./mychart --generate-name
+
 workflows:
   deployment:
     jobs:
@@ -14,13 +22,17 @@ workflows:
           region: AWS_DEFAULT_REGION
           repo: simplelearnapp1
           dockerfile: Dockerfile
-          tag: "17"
+          tag: "18"
           # Uncomment if the repository does not yet exist
           # create-repo: true
-      - aws-eks/install-helm-chart:
-          chart: "https://829804546595.dkr.ecr.eu-central-1.amazonaws.com/simplelearnapp1/17"
-          cluster-name: terraform-eks-demo
-          aws-region: eu-central-1
-          release-name: nginx-release
+      - install-helm-custom-chart:
+          name: install-helm-custom-chart
           requires:
             - build-and-push-image
+#      - aws-eks/install-helm-chart:
+#          chart: "https://829804546595.dkr.ecr.eu-central-1.amazonaws.com/simplelearnapp1/17"
+#          cluster-name: terraform-eks-demo
+#          aws-region: eu-central-1
+#          release-name: nginx-release
+#          requires:
+#            - build-and-push-image
