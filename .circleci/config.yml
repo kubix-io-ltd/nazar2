@@ -10,6 +10,9 @@ jobs:
   install-helm-custom-chart:
     executor: aws-eks/python3
     steps:
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: terraform-eks-demo
+          install-kubectl: true
       - helm/install-helm-on-cluster:
           enable-cluster-wide-admin-access: true
       - run:
@@ -26,7 +29,7 @@ workflows:
           region: AWS_DEFAULT_REGION
           repo: simplelearnapp1
           dockerfile: Dockerfile
-          tag: "18"
+          tag: "20"
           # Uncomment if the repository does not yet exist
           # create-repo: true
       - install-helm-custom-chart:
