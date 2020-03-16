@@ -9,6 +9,7 @@ jobs:
   install-helm-custom-chart:
     executor: aws-eks/python3
     steps:
+      - checkout
       - run:
         name: install custom helm chart
         command: |
