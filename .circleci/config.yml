@@ -23,8 +23,8 @@ jobs:
             mv cstmnginx/Chart.yaml cstmnginx/Chart.yaml.template
             cat cstmnginx/values.yaml.template |\
                sed "s|repository: nginx|repository: 829804546595.dkr.ecr.eu-central-1.amazonaws.com/simplelearnapp1|g" > cstmnginx/values.yaml
-           cat cstmnginx/Chart.yaml.template |\
-              sed "s|appVersion:.*|appVersion: 31|g" > cstmnginx/Chart.yaml
+            cat cstmnginx/Chart.yaml.template |\
+               sed "s|appVersion:.*|appVersion: 31|g" > cstmnginx/Chart.yaml
             helm install ./cstmnginx
 
 workflows:
