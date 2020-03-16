@@ -33,7 +33,7 @@ workflows:
           tag: "18"
           # Uncomment if the repository does not yet exist
           # create-repo: true
-      - instal_helm_custom_chart:
+      - install-helm-custom-chart:
           name: install-helm-custom-chart
           requires:
             - build-and-push-image
