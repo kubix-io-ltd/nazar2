@@ -8,11 +8,11 @@ orbs:
 jobs:
   install-helm-custom-chart:
     executor: aws-eks/python3
-  steps:
-    - run:
-      name: install custom helm chart
-      command: |
-        helm install ./../mychart --generate-name
+    steps:
+      - run:
+        name: install custom helm chart
+        command: |
+          helm install ./../mychart --generate-name
 
 workflows:
   deployment:
