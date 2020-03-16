@@ -11,7 +11,7 @@ jobs:
   steps:
     - run:
       name: install custom helm chart
-      command: helm install ./mychart --generate-name
+      command: helm install ./../mychart --generate-name
 
 workflows:
   deployment:
