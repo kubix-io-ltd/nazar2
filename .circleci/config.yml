@@ -7,7 +7,7 @@ orbs:
   helm: circleci/helm@0.2.3
 
 jobs:
-  install-helm-custom-chart:
+  push-image-install-helm-chart:
     executor: aws-eks/python3
     steps:
       - setup_remote_docker
@@ -32,7 +32,7 @@ jobs:
             helm install ./cstmnginx
 
 workflows:
-  deployment:
+  nginx_deployment:
     jobs:
-      - install-helm-custom-chart:
-          name: install-helm-custom-chart
+      - push-image-install-helm-chart:
+          name: push-image-install-helm-chart
