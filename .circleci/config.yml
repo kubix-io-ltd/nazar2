@@ -7,9 +7,16 @@ orbs:
   helm: circleci/helm@0.2.3
 
 jobs:
-  install-helm-custom-chart:
+  push-image-install-helm-chart:
     executor: aws-eks/python3
     steps:
+      - aws-ecr/build_and_push_image:
+          name: build-and-push-image
+          account-url: AWS_ECR_URL
+          region: AWS_DEFAULT_REGION
+          repo: simplelearnapp1
+          dockerfile: Dockerfile
+          tag: "stable"
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: terraform-eks-demo
           install-kubectl: true
@@ -27,21 +34,5 @@ jobs:
 workflows:
   deployment:
     jobs:
-      - aws-ecr/build_and_push_image:
-          name: build-and-push-image
-          account-url: AWS_ECR_URL
-          region: AWS_DEFAULT_REGION
-          repo: simplelearnapp1
-          dockerfile: Dockerfile
-          tag: "stable"
-      - install-helm-custom-chart:
-          name: install-helm-custom-chart
-          requires:
-            - build-and-push-image
-#      - aws-eks/install-helm-chart:
-#          chart: ~/mychart
-#          cluster-name: terraform-eks-demo
-#          aws-region: eu-central-1
-#          release-name: nginx-release
-#          requires:
-#            - build-and-push-image
+      - push-image-install-helm-chart:
+          name: push-image-install-helm-chart
