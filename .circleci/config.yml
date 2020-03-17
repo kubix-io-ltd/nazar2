@@ -8,7 +8,10 @@ orbs:
 
 jobs:
   install-helm-custom-chart:
+    executor: aws-eks/python3
     steps:
+      - setup_remote_docker
+          docker_layer_caching: true
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_URL
           region: AWS_DEFAULT_REGION
