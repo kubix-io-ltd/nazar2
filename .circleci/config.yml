@@ -11,7 +11,6 @@ jobs:
     executor: aws-eks/python3
     steps:
       - aws-ecr/build-and-push-image:
-          name: build-and-push-image
           account-url: AWS_ECR_URL
           region: AWS_DEFAULT_REGION
           repo: simplelearnapp1
