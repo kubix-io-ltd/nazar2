@@ -10,6 +10,12 @@ jobs:
   install-helm-custom-chart:
     executor: aws-eks/python3
     steps:
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_URL
+          region: AWS_DEFAULT_REGION
+          repo: simplelearnapp1
+          dockerfile: Dockerfile
+          tag: "stable"
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: terraform-eks-demo
           install-kubectl: true
@@ -27,21 +33,5 @@ jobs:
 workflows:
   deployment:
     jobs:
-      - aws-ecr/build-and-push-image:
-          name: build-and-push-image
-          account-url: AWS_ECR_URL
-          region: AWS_DEFAULT_REGION
-          repo: simplelearnapp1
-          dockerfile: Dockerfile
-          tag: "stable"
       - install-helm-custom-chart:
           name: install-helm-custom-chart
-          requires:
-            - build-and-push-image
-#      - aws-eks/install-helm-chart:
-#          chart: ~/mychart
-#          cluster-name: terraform-eks-demo
-#          aws-region: eu-central-1
-#          release-name: nginx-release
-#          requires:
-#            - build-and-push-image
