@@ -10,8 +10,7 @@ jobs:
   push-image-install-helm-chart:
     executor: aws-eks/python3
     steps:
-      - aws-ecr/build_and_push_image:
-          name: build-and-push-image
+      - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_URL
           region: AWS_DEFAULT_REGION
           repo: simplelearnapp1
