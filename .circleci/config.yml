@@ -30,8 +30,6 @@ jobs:
 #            mv cstmnginx/values.yaml cstmnginx/values.yaml.template
 #            cat cstmnginx/values.yaml.template |\
 #               sed "s|repository: nginx|repository: 829804546595.dkr.ecr.eu-central-1.amazonaws.com/simplelearnapp1|g" > cstmnginx/values.yaml
-#           helm repo add cstmnginx https://kubernetes-charts.storage.googleapis.com
-#            helm install cstmnginx
 
 workflows:
   nginx_deployment:
