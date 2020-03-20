@@ -25,8 +25,7 @@ jobs:
       - run:
           name: install custom helm chart
           command: |
-            ls -al
-            helm install ./cstmnginx1
+            helm install ./cstmnginx
 #            helm install ./cstmnginx --set image.repository=829804546595.dkr.ecr.eu-central-1.amazonaws.com/simplelearnapp1
 #            mv cstmnginx/values.yaml cstmnginx/values.yaml.template
 #            cat cstmnginx/values.yaml.template |\
