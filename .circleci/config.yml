@@ -16,7 +16,7 @@ jobs:
           region: AWS_DEFAULT_REGION
           repo: simplelearnapp1
           dockerfile: Dockerfile
-          tag: "stable"
+          tag: "confirmv1"
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: terraform-eks-demo
           install-kubectl: true
