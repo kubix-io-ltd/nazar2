@@ -11,14 +11,6 @@ jobs:
     executor: aws-eks/python3
     steps:
       - setup_remote_docker
-      - run:
-          name: install dockerlint
-          command: |
-            sudo apt-get install npm
-            sudo npm install -g dockerlint
-            pwd
-            ls -al
-            sudo dockerlint --debug Dockerfile
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_URL
           region: AWS_DEFAULT_REGION
@@ -38,5 +30,9 @@ jobs:
 workflows:
   nginx_deployment:
     jobs:
+      - run:
+          name: install dockerlint
+          command: |
+            dockerlint Dockerfile
       - push-image-install-helm-chart:
           name: push-image-install-helm-chart
