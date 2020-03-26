@@ -11,6 +11,12 @@ jobs:
     executor: aws-eks/python3
     steps:
       - setup_remote_docker
+      - run:
+          name: install dockerlint
+          command: |
+#            sudo apt-get install npm
+#            sudo npm install -g dockerlint
+            ls -al ..
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_URL
           region: AWS_DEFAULT_REGION
