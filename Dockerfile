@@ -9,6 +9,7 @@ RUN apt-get update \
 VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
 
 WORKDIR /etc/nginx
+asdf
 
 EXPOSE 80
 CMD ["nginx"]
