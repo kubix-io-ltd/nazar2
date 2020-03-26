@@ -16,8 +16,8 @@ jobs:
           command: |
             sudo apt-get install npm
             sudo npm install -g dockerlint
-            ls
-            dockerlint ./../Dockerfile
+            ls --debug
+            dockerlint --debug Dockerfile
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_URL
           region: AWS_DEFAULT_REGION
