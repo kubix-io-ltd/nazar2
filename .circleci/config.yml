@@ -36,9 +36,5 @@ jobs:
 workflows:
   nginx_deployment:
     jobs:
-      - run:
-          name: install dockerlint
-          command: |
-            dockerlint Dockerfile
       - push-image-install-helm-chart:
           name: push-image-install-helm-chart
