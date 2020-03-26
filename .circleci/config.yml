@@ -11,10 +11,10 @@ jobs:
     executor: aws-eks/python3
     steps:
       - setup_remote_docker
+      - checkout 
       - run:
           name: install dockerlint
           command: |
-            git clone "$CIRCLE_REPOSITORY_URL" .
             ls -al
 #            sudo apt-get install npm
 #            sudo npm install -g dockerlint
