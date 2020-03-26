@@ -14,6 +14,7 @@ jobs:
       - run:
           name: install dockerlint
           command: |
+            apt-get install npm
             npm install -g dockerlint
             dockerlint Dockerfile
       - aws-ecr/build-and-push-image:
