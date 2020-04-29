@@ -11,4 +11,5 @@ VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/v
 WORKDIR /etc/nginx
 
 EXPOSE 80
+
 CMD ["nginx"]
