@@ -27,6 +27,8 @@ jobs:
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: terraform-eks-demo
           install-kubectl: true
+      - helm/install-helm-on-cluster:
+          enable-cluster-wide-admin-access: false
       - run:
           name: install custom helm chart
           command: |
